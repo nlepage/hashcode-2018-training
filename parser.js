@@ -22,7 +22,7 @@ slices.forEach(slice => {
   console.log(slice.join(' '))
 })
 
-generatorSlice(L, H)
+const generated = generatorSlice(L, H)
 
 function isSliceValid(r1, c1, r2, c2) {
   const ingredients = [0, 0]
@@ -45,4 +45,5 @@ function generatorSlice(L, H) {
       if (row * col <= H && row * col >= 2 * L) result.push([row, col])
     }
   }
+  return result
 }
