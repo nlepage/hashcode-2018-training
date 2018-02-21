@@ -9,8 +9,8 @@ const slices = []
 
 const matrix = pizza.map(line => line.split(''))
 
-if (isSliceValid(0, 0, 2, L)) {
-  slices.push([0, 0, 2, L])
+if (isSliceValid(0, 0, 1, L - 1)) {
+  slices.push([0, 0, 1, L - 1])
 }
 
 console.log(slices.length)
