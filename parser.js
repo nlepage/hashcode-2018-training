@@ -2,7 +2,7 @@ const { readFileSync } = require('fs')
 
 const buffer = readFileSync('./' + process.argv[2] + '.in').toString()
 const [numbers, ...pizza] = buffer.split('\n')
-const [R, C, L, H] = numbers.split(' ')
+const [R, C, L, H] = numbers.split(' ').map(x => parseInt(x))
 
 const cursor = [0, 0]
 const slices = []
@@ -19,10 +19,12 @@ slices.forEach(slice => {
   console.log(slice.join(' '))
 })
 
+generatorSlice(L, H)
+
 function isSliceValid(r1, c1, r2, c2) {
   const ingredients = [0, 0]
-  for(let r = r1; r <= r2; r++)
-    for(let c = c1; c <= c2; c++) {
+  for (let r = r1; r <= r2; r++)
+    for (let c = c1; c <= c2; c++) {
       if (matrix[r][c] === 'M') {
         ingredients[0]++
       } else {
@@ -31,4 +33,13 @@ function isSliceValid(r1, c1, r2, c2) {
     }
 
   return ingredients[0] >= L && ingredients[1] >= L
+}
+
+function generatorSlice(L, H) {
+  let result = []
+  for (let row = 1; row <= H; row++) {
+    for (let col = 1; col <= H; col++) {
+      if (row * col <= H && row * col >= 2 * L) result.push([row, col])
+    }
+  }
 }
