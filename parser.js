@@ -6,12 +6,15 @@ const [R, C, L, H] = numbers.split(' ').map(x => parseInt(x))
 
 const cursor = [0, 0]
 const slices = []
-
 const matrix = pizza.map(line => line.split(''))
 
-if (isSliceValid(0, 0, 1, L - 1)) {
-  slices.push([0, 0, 1, L - 1])
-}
+for(let r = 0; r < R; r+=2)
+  for(let c = 0; c <= C - L ; c+=L+1) {
+    if (isSliceValid(r, c, r + 1, c + L - 1)) {
+      slices.push([r, c, r + 1, c + L - 1])
+    }
+  }
+
 
 console.log(slices.length)
 
